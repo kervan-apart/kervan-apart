@@ -855,7 +855,77 @@
             section {
                 padding: 3rem 1rem;
             }
-        }
+
+	/* CORRECTIONS iOS - Calendrier */
+            .calendar-container {
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+            }
+            
+            .months-grid {
+                display: grid !important;
+                grid-template-columns: 1fr !important;
+                gap: 1.5rem !important;
+                visibility: visible !important;
+            }
+            
+            .month-calendar {
+                display: block !important;
+                visibility: visible !important;
+            }
+            
+            .days {
+                display: grid !important;
+                grid-template-columns: repeat(7, 1fr) !important;
+                gap: 3px !important;
+            }
+            
+            .day {
+                aspect-ratio: 1 !important;
+                min-height: 40px !important;
+                font-size: 0.85rem !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                -webkit-tap-highlight-color: transparent;
+                touch-action: manipulation;
+            }
+            
+            /* CORRECTIONS iOS - Images */
+            img {
+                display: block !important;
+                max-width: 100% !important;
+                height: auto !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+            }
+            
+            /* CORRECTIONS iOS - Sliders */
+            .slider-container,
+            .reviews-slider {
+                display: block !important;
+                visibility: visible !important;
+            }
+            
+            .slider-btn,
+            .review-btn {
+                display: flex !important;
+                -webkit-tap-highlight-color: transparent;
+                touch-action: manipulation;
+            }
+            
+            /* CORRECTIONS iOS - FAQ */
+            .faq-question {
+                cursor: pointer !important;
+                -webkit-tap-highlight-color: transparent;
+                touch-action: manipulation;
+            }
+            
+            .faq-answer {
+                display: block !important;
+            }	
+		}
 
         /* ============================================
            SLIDER DE PHOTOS - CODE CSS
