@@ -3039,8 +3039,20 @@
             return Math.ceil(diff / (1000 * 60 * 60 * 24));
         }
         
-        // Initialiser le calendrier au chargement de la page
+// Initialiser le calendrier - Compatible iOS
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initCalendar);
+        } else {
+            initCalendar();
+        }
         window.addEventListener('load', initCalendar);
+        
+        // Forcer l'initialisation après un délai (sécurité iOS)
+        setTimeout(function() {
+            if (document.getElementById('monthsGrid') && document.getElementById('monthsGrid').children.length === 0) {
+                initCalendar();
+            }
+        }, 1000);
     </script>
 </body>
 </html>
