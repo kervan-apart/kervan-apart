@@ -2713,11 +2713,12 @@ async function loadBookedDatesFromSheet() {
             }
         }
         
-        // Initialiser le calendrier
-        function initCalendar() {
-            document.getElementById('currentYear').textContent = currentCalendarYear;
-            renderCalendar();
-        }
+       // Initialiser le calendrier
+async function initCalendar() {
+    await loadBookedDatesFromSheet(); // Charger Google Sheets d'abord
+    document.getElementById('currentYear').textContent = currentCalendarYear;
+    renderCalendar();
+}
         
         // Générer le calendrier
         function renderCalendar() {
