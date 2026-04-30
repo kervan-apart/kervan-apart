@@ -2767,7 +2767,7 @@ function isDateBooked(dateStr) {
                     dayDiv.classList.add('past');
                 }
                 // Vérifier si la date est réservée
-                else if (bookedDates.includes(dateStr)) {
+				else if (isDateBooked(dateStr)) {
                     dayDiv.classList.add('booked');
                 }
                 // Date disponible
