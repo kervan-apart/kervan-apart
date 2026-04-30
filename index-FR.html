@@ -2627,6 +2627,13 @@
     { start: '2026-08-18', end: '2026-08-26' },  // 8 nuits
     { start: '2026-11-01', end: '2026-11-21' }  // 20 nuits
 ];
+		// Vérifier si une date est réservée
+// Une date est réservée si elle est >= start ET < end (end = jour de checkout, donc disponible)
+function isDateBooked(dateStr) {
+    return bookedDates.some(booking => {
+        return dateStr >= booking.start && dateStr < booking.end;
+    });
+}
         
         const monthNames = [
             'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
