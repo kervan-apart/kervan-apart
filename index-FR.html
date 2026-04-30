@@ -2608,6 +2608,27 @@ const SHEET_ID = '130hTVM5a9V_Uy7ATCImgVkPOaLav5sPsgcynIzSyTAY';
 let bookedDates = []; // Sera chargé depuis Google Sheets
 
 // Fonction pour charger les dates depuis Google Sheets
+// Convertir format Google Date(2026,3,25) en 2026-04-25
+function convertGoogleDate(dateStr) {
+    if (!dateStr) return '';
+    
+    // Si c'est déjà au bon format, retourner tel quel
+    if (dateStr.match(/^\d{4}-\d{2}-\d{2}$/)) {
+        return dateStr;
+    }
+    
+    // Parser Date(2026,3,25)
+    const match = dateStr.match(/Date\((\d+),(\d+),(\d+)\)/);
+    if (match) {
+        const year = match[1];
+        const month = String(parseInt(match[2]) + 1).padStart(2, '0'); // +1 car mois commence à 0
+        const day = String(match[3]).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    }
+    
+    return dateStr;
+}
+		
 async function loadBookedDatesFromSheet() {
     try {
         const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`;
