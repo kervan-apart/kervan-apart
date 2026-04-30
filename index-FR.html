@@ -2630,12 +2630,16 @@ async function loadBookedDatesFromSheet() {
                 const statut = row[2].v;    // Colonne C
                 
                 // Ajouter seulement si statut = "réservé"
-                if (statut && statut.toLowerCase().includes('réservé')) {
-                    bookedDates.push({
-                        start: dateDebut,
-                        end: dateFin
-                    });
-                }
+if (statut && statut.toLowerCase().includes('réservé')) {
+    // Convertir Date(2026,3,25) en 2026-04-25
+    const startConverted = convertGoogleDate(dateDebut);
+    const endConverted = convertGoogleDate(dateFin);
+    
+    bookedDates.push({
+        start: startConverted,
+        end: endConverted
+    });
+}
             }
         }
         
