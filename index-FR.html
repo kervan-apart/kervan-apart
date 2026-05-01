@@ -2768,12 +2768,17 @@ function isDateBooked(dateStr) {
                 }
                 // Vérifier si la date est réservée
 				else if (isDateBooked(dateStr)) {
-                    dayDiv.classList.add('booked');
-                }
-                // Date disponible
-                else {
-                    dayDiv.onclick = () => selectDate(dateStr);
-                }
+				    dayDiv.classList.add('booked');
+			    // Permettre clic si c'est un START de réservation (checkout possible)
+			    const isStartDate = bookedDates.some(b => b.start === dateStr);
+			    if (isStartDate) {
+			        dayDiv.onclick = () => selectDate(dateStr);
+			  	  }
+				}
+				// Date disponible
+				else {
+				    dayDiv.onclick = () => selectDate(dateStr);
+				}
                 
                 // Vérifier si la date est sélectionnée
                 if (selectedCheckIn === dateStr || selectedCheckOut === dateStr) {
