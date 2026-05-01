@@ -2844,18 +2844,22 @@ function isDateBooked(dateStr) {
             updateSelectionInfo();
         }
         
-        // Vérifier s'il y a des dates réservées entre deux dates
-        function hasBookedDatesBetween(startDate, endDate) {
-            const start = new Date(startDate);
-            const end = new Date(endDate);
-            
-            for (let d = new Date(start); d < end; d.setDate(d.getDate() + 1)) {
-                if (bookedDates.includes(formatDate(d))) {
-                    return true;
-                }
-            }
-            return false;
-        }
+       // Vérifier s'il y a des dates réservées entre deux dates
+		function hasBookedDatesBetween(startDate, endDate) {
+		    const start = new Date(startDate);
+		    const end = new Date(endDate);
+    
+		    // Parcourir chaque jour ENTRE startDate et endDate (excluant endDate car c'est le checkout)
+		    for (let d = new Date(start); d < end; d.setDate(d.getDate() + 1)) {
+	        const dateStr = d.toISOString().split('T')[0]; // Format YYYY-MM-DD
+        
+	        // Vérifier si cette date est réservée
+	        if (isDateBooked(dateStr)) {
+            return true;
+  			      }
+		    }
+		    return false;
+		}
         
         // Mettre à jour l'affichage de la sélection
         function updateSelectionInfo() {
